@@ -23,7 +23,7 @@
 </template>
     
 <script>
-    import { reactive, ref, computed } from 'vue'
+    import { reactive, ref, computed, watch } from 'vue'
     export default{
         setup(){
             let price = ref(20000)
@@ -58,6 +58,24 @@
             const courseDisplayName = computed(() => {
                 console.log('計算屬性被呼叫了')
                 return courseId.value + ' ' + courseFullName.value
+            })
+
+            // watch(price, (n,o) => {
+            //     console.log('price變化了', n, o)
+            // })
+
+            // watch(price2, (n,o) => {
+            //     console.log('price2變化了', n, o)
+            // })
+
+            watch([price, price2], (n, o) => {
+                if(n[0] !== o[0]){
+                    console.log('price變化了', n[0], o[0])
+                }
+                
+                if(n[1] !== o[1]){
+                    console.log('price1變化了', n[1], o[1])
+                }
             })
 
             return{course, course2, addCourse, addCourse2, price, price2, courseDisplayName, courseId, courseFullName} //, setCourseId, setCourseFullName
