@@ -1,8 +1,9 @@
 <script>
 import CompositionCourse from './components/CompositionCourse.vue'
+import OptionsSeminar from './components/OptionsSeminar.vue';
   export default{
     name: 'App',
-    components: {CompositionCourse},
+    components: {CompositionCourse, OptionsSeminar},
     setup(){
 
     }
@@ -12,6 +13,8 @@ import CompositionCourse from './components/CompositionCourse.vue'
 <template>
   <h1>composition lab2</h1>
   <CompositionCourse />
+  <OptionsSeminar />
+
 </template>
 
 <style scoped>

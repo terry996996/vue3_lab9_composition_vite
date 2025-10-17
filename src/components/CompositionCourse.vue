@@ -1,8 +1,8 @@
 <template>
         <div>
             <h3>{{ courseDisplayName }}</h3>
-            <CourseIntro :price="price" :courseId="courseId" :courseFullName="courseFullName"/>
-            <CourseIntroComposition :price="price" :courseId="courseId" :courseFullName="courseFullName"/>
+            <CourseIntro :courseId="courseId" :courseFullName="courseFullName"/>
+            <CourseIntroComposition :courseId="courseId" :courseFullName="courseFullName"/>
             <p>{{ course }}</p>
             <p>${{ price }}</p>
             <input type="text" placeholder="請輸入courseId" v-model="courseId">
@@ -25,7 +25,7 @@
 </template>
     
 <script>
-    import { reactive, ref, computed, watch } from 'vue'
+    import { reactive, ref, computed, watch, provide } from 'vue'
     import CourseIntro from './CourseIntro.vue';
     import CourseIntroComposition from './CourseIntroComposition.vue';
     export default{
@@ -36,6 +36,8 @@
             const courseId = ref('')
             const courseFullName = ref('')
             const courseFullNameInput = ref()
+            
+            provide("price", price) // 跨代傳送
 
             let course = reactive({
                 name: 'POOP',

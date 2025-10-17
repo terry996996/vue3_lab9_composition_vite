@@ -1,14 +1,15 @@
 <template>
     <h3>{{ course }}</h3>
-    <h3>{{ price }}</h3>
+    <h3>Inject:{{ price }}</h3>
 </template>
     
 <script>
-import {computed} from 'vue'
+import {computed, inject} from 'vue'
 export default{
-    props:['price', 'courseId', 'courseFullName'], // 接收父傳來的資料
+    props:['courseId', 'courseFullName'], // 接收父傳來的資料
     setup(props){
 
+    const price = inject("price")
 
     const course = computed(() => {
         if(!props.courseFullName){
@@ -18,7 +19,7 @@ export default{
         }
     )
 
-    return{course}
+    return{course, price}
     
     
     }
