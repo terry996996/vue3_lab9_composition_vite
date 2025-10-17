@@ -14,7 +14,7 @@ export default{
         if(!props.courseFullName){
                 return `[${props.courseId}]`
             }
-            return `[${props.courseId}]${props.courseFullName}`
+            return `[${props.courseId}]${props.courseFullName}` // props裡面接收的資料直接用props.去拿就可以了，不用再.value
         }
     )
 
