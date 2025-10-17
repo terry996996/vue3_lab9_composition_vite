@@ -1,11 +1,12 @@
 <template>
         <div>
             <h3>{{ courseDisplayName }}</h3>
-            <CourseIntro :course="course" :price="price"/>
+            <CourseIntro :price="price" :courseId="courseId" :courseFullName="courseFullName"/>
+            <CourseIntroComposition :price="price" :courseId="courseId" :courseFullName="courseFullName"/>
             <p>{{ course }}</p>
             <p>${{ price }}</p>
             <input type="text" placeholder="請輸入courseId" v-model="courseId">
-            <input type="text" placeholder="請輸入courseFullName" ref="courseFullNameInput"><!-- 雕遷的ref屬性，用在HTML標籤上，獲取的是DOM元素-->
+            <input type="text" placeholder="請輸入courseFullName" ref="courseFullNameInput"><!-- 標籤的ref屬性，用在HTML標籤上，獲取的是DOM元素-->
             <button @click="setCourseFullName">set course full name</button>
 
             <!-- &nbsp; -->
@@ -26,8 +27,9 @@
 <script>
     import { reactive, ref, computed, watch } from 'vue'
     import CourseIntro from './CourseIntro.vue';
+    import CourseIntroComposition from './CourseIntroComposition.vue';
     export default{
-        components:{CourseIntro},
+        components:{CourseIntro, CourseIntroComposition},
         setup(){
             let price = ref(20000)
             let price2 = ref(25000)

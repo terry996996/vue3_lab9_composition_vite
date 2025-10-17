@@ -5,9 +5,14 @@
     
 <script>
 export default{
-    props:['course', 'price'], // 接收父傳來的資料
-    setup(){
-        return{}
+    props:['price', 'courseId', 'courseFullName'], // 接收父傳來的資料
+    computed:{
+        course(){
+            if(!this.courseFullName){
+                return `[${this.courseId}]`
+            }
+            return `[${this.courseId}]${this.courseFullName}`
+        }
     }
 }
     
