@@ -1,11 +1,12 @@
 <template>
         <div>
+            <h3>{{ courseDisplayName }}</h3>
+            <CourseIntro :course="course" :price="price"/>
             <p>{{ course }}</p>
             <p>${{ price }}</p>
-            <h3>{{ courseDisplayName }}</h3>
             <input type="text" placeholder="請輸入courseId" v-model="courseId">
-            <input type="text" placeholder="請輸入courseFullName" v-model="courseFullName">
-            
+            <input type="text" placeholder="請輸入courseFullName" ref="courseFullNameInput"><!-- 雕遷的ref屬性，用在HTML標籤上，獲取的是DOM元素-->
+            <button @click="setCourseFullName">set course full name</button>
 
             <!-- &nbsp; -->
             <!-- <button @click="course.duration+=7">increase 1 day</button> -->
@@ -24,12 +25,15 @@
     
 <script>
     import { reactive, ref, computed, watch } from 'vue'
+    import CourseIntro from './CourseIntro.vue';
     export default{
+        components:{CourseIntro},
         setup(){
             let price = ref(20000)
             let price2 = ref(25000)
             const courseId = ref('')
             const courseFullName = ref('')
+            const courseFullNameInput = ref()
 
             let course = reactive({
                 name: 'POOP',
@@ -49,6 +53,12 @@
                 course2.value.duration += 7
                 price2.value += 10000
             }
+
+            const setCourseFullName = () => {
+            console.log("courseFullNameInput=",courseFullNameInput)
+            console.log("courseFullNameInput.value=",courseFullNameInput.value) // 獲取DOM元素
+            courseFullName.value = courseFullNameInput.value.value
+        }
 
             // const setCourseId = event => courseId.value = event.target.value
 
@@ -78,7 +88,7 @@
                 }
             })
 
-            return{course, course2, addCourse, addCourse2, price, price2, courseDisplayName, courseId, courseFullName} //, setCourseId, setCourseFullName
+            return{course, course2, addCourse, addCourse2, price, price2, courseDisplayName, courseId, courseFullName, courseFullNameInput, setCourseFullName} //, setCourseId, setCourseFullName
 
         }
     }
